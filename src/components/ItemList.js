@@ -1,67 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Table,
   TableBody,
   TableContainer,
   Paper,
   CircularProgress,
+  Typography,
 } from '@mui/material';
 import ItemHeader from './ItemHeader';
 import ItemRow from './ItemRow';
-import ItemDetails from './ItemDetails';
+import { fetchItems } from '../redux/actions/itemActions';
 
-function ItemList() {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-  const [selectedItem, setSelectedItem] = useState(null);
+function ItemList({ onSelect }) {
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector((state) => state.items);
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await axios.get('/items');
-        console.log(response.data);
-        setItems(response.data);
-      } catch (err) {
-        console.error('API Error:', err);
-        setError(err.message || 'Error fetching items');
-      } finally {
-        setLoading(false);
-      }
-    };
+    dispatch(fetchItems());
+  }, [dispatch]);
 
-    fetchItems();
-  }, []);
+  if (loading) {
+    return (
+      <div style={{ textAlign: 'center', marginTop: 50 }}>
+        <CircularProgress />
+      </div>
+    );
+  }
 
-  if (loading) return <CircularProgress />;
-  if (error) return <div>Error: {error}</div>;
-  if (items.length === 0) return <div>No items found.</div>;
+  if (error) {
+    return <Typography color="error">Error: {error}</Typography>;
+  }
+
+  if (items.length === 0) {
+    return <Typography>No items found.</Typography>;
+  }
 
   return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table aria-label="item list">
-          <ItemHeader />
-          <TableBody>
-            {items.map((item) => (
-              <ItemRow
-                key={item.guid}
-                item={item}
-                onSelect={setSelectedItem}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-      {selectedItem && (
-        <ItemDetails
-          item={selectedItem}
-          onClose={() => setSelectedItem(null)}
-        />
-      )}
-    </div>
+    <TableContainer component={Paper}>
+      <Table>
+        <ItemHeader />
+        <TableBody>
+          {items.map((item) => (
+            <ItemRow key={item.guid} item={item} onSelect={onSelect} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 
