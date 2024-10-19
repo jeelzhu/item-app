@@ -3,13 +3,12 @@ import axios from 'axios';
 import {
   Table,
   TableBody,
-  TableCell,
   TableContainer,
-  TableHead,
-  TableRow,
   Paper,
   CircularProgress,
 } from '@mui/material';
+import ItemHeader from './ItemHeader';
+import ItemRow from './ItemRow';
 import ItemDetails from './ItemDetails';
 
 function ItemList() {
@@ -22,6 +21,7 @@ function ItemList() {
     const fetchItems = async () => {
       try {
         const response = await axios.get('/items');
+        console.log(response.data);
         setItems(response.data);
       } catch (err) {
         console.error('API Error:', err);
@@ -42,25 +42,14 @@ function ItemList() {
     <div>
       <TableContainer component={Paper}>
         <Table aria-label="item list">
-          <TableHead>
-            <TableRow>
-              <TableCell><strong>GUID</strong></TableCell>
-              <TableCell><strong>Name</strong></TableCell>
-              <TableCell><strong>Path</strong></TableCell>
-            </TableRow>
-          </TableHead>
+          <ItemHeader />
           <TableBody>
             {items.map((item) => (
-              <TableRow
+              <ItemRow
                 key={item.guid}
-                hover
-                style={{ cursor: 'pointer' }}
-                onClick={() => setSelectedItem(item)}
-              >
-                <TableCell>{item.guid}</TableCell>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.path.join(' > ')}</TableCell>
-              </TableRow>
+                item={item}
+                onSelect={setSelectedItem}
+              />
             ))}
           </TableBody>
         </Table>
