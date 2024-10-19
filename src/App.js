@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import ItemList from './components/ItemList';
-import ItemDetails from './components/ItemDetails';
+import ItemDetailsPage from './components/ItemDetailsPage';
 
 function App() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const navigate = useNavigate();
+  const handleItemSelected = (item) => {
+    navigate(`/items/${item.guid}`);
+  };
 
   return (
-    <div>
-      {selectedItem ? (
-        <ItemDetails item={selectedItem} onBack={() => setSelectedItem(null)} />
-      ) : (
-        <ItemList onSelect={setSelectedItem} />
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<ItemList onSelect={handleItemSelected} />} />
+      <Route path="/items/:id" element={<ItemDetailsPage />} />
+    </Routes>
   );
 }
 
