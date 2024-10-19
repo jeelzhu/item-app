@@ -1,17 +1,26 @@
-import axios from 'axios';
+import * as api from '../../services/api';
+import * as types from '../constants/actionTypes';
 
-export const FETCH_ITEMS_REQUEST = 'FETCH_ITEMS_REQUEST';
-export const FETCH_ITEMS_SUCCESS = 'FETCH_ITEMS_SUCCESS';
-export const FETCH_ITEMS_FAILURE = 'FETCH_ITEMS_FAILURE';
+const fetchItemsRequest = () => ({
+  type: types.FETCH_ITEMS_REQUEST
+});
 
-export const fetchItems = () => {
-  return async (dispatch) => {
-    dispatch({ type: FETCH_ITEMS_REQUEST });
-    try {
-      const response = await axios.get('/items');
-      dispatch({ type: FETCH_ITEMS_SUCCESS, payload: response.data });
-    } catch (error) {
-      dispatch({ type: FETCH_ITEMS_FAILURE, payload: error.message });
-    }
-  };
+const fetchItemsSuccess = (items) => ({
+  type: types.FETCH_ITEMS_SUCCESS,
+  payload: items
+});
+
+const fetchItemsFailure = (error) => ({
+  type: types.FETCH_ITEMS_FAILURE,
+  payload: error
+});
+
+export const fetchItems = () => async (dispatch) => {
+  dispatch(fetchItemsRequest());
+  try {
+    const items = await api.fetchItems();
+    dispatch(fetchItemsSuccess(items));
+  } catch (error) {
+    dispatch(fetchItemsFailure(error.message));
+  }
 };
