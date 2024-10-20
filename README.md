@@ -30,6 +30,6 @@ Follow these steps to set up the project locally:
 ## Usage
 
 To start the development server, run:
-    ```bash
+   ```bash
    npm start
    ```
