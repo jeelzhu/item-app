@@ -33,3 +33,10 @@ To start the development server, run:
    ```bash
    npm start
    ```
+
+## Note on Future Improvements
+
+Due to time constraints, the following enhancements are not currently implemented:
+
+- Additional Material-UI styling to further improve the user interface and experience.
+- More comprehensive unit test cases to cover additional scenarios and edge cases.
