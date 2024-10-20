@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import PropertiesTab from './PropertiesTab';
 import ImageTab from './ImageTab';
 
+// Component to display the item details
 function ItemDetails({ item }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialTab = parseInt(searchParams.get('tab')) || 0; 

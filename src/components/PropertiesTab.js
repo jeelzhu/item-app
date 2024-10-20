@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
+// Component to display the properties in tab 1
 function PropertiesTab({ properties }) {
     return (
       <Box p={2}>

@@ -4,6 +4,7 @@ import { Typography, Button, CircularProgress } from '@mui/material';
 import ItemDetails from './ItemDetails';
 import useFetchItems from '../hooks/useFetchItems';
 
+// Component to display the item details page
 function ItemDetailsPage() {
     const { id } = useParams();  
     const navigate = useNavigate();
