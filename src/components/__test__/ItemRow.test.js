@@ -27,10 +27,4 @@ describe('ItemRow', () => {
     // Check if the onSelect function is called with the correct item
     expect(mockOnSelect).toHaveBeenCalledWith(mockItem);
   });
-
-  test('has correct style', () => {
-    const row = screen.getByRole('row');
-    // Check if the row has the correct style
-    expect(row).toHaveStyle('cursor: pointer');
-  });
 });

@@ -20,12 +20,18 @@ function ItemDetails({ item }) {
   }, [initialTab]);
 
   return (
-    <Box p={2}>
+    <Box>
       <Tabs value={tabIndex} onChange={handleTabChange}>
-        <Tab label="Properties" />
-        <Tab label="Image" />
+        <Tab label="Properties" sx={{ 
+            backgroundColor: tabIndex === 0 ? 'rgba(25, 118, 210, 0.1)' : 'transparent', 
+            '&:hover': { backgroundColor: 'rgba(25, 118, 210, 0.2)' } 
+        }} />
+        <Tab label="Image" sx={{ 
+            backgroundColor: tabIndex === 1 ? 'rgba(25, 118, 210, 0.1)' : 'transparent', 
+            '&:hover': { backgroundColor: 'rgba(25, 118, 210, 0.2)' } 
+        }} />
       </Tabs>
-      <Box mt={2}>
+      <Box>
         {tabIndex === 0 && <PropertiesTab properties={item.properties} />}
         {tabIndex === 1 && <ImageTab guid={item.guid} />}
       </Box>

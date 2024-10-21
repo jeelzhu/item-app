@@ -19,7 +19,7 @@ function ItemList({ onSelect }) {
   if (items.length === 0) return <Typography>No items found.</Typography>;  
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} >
       <Table>
         <ItemHeader />
         <TableBody>
