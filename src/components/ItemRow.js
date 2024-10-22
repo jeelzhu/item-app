@@ -1,21 +1,23 @@
 import React from 'react';
 import { TableRow, TableCell } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { joinArray } from '../utils/utils';
 
+// Styled TableRow with hover effect
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:hover': {
+    backgroundColor: theme.palette.primary.main + '1A',
+  },
+  cursor: 'pointer',
+}));
 
-// Component to display the item row
 function ItemRow({ item, onSelect }) {
   return (
-    <TableRow
-      sx={{ 
-        '&:hover': { backgroundColor: 'rgba(25, 118, 210, 0.1)' } // Hover effect
-      }}
-      onClick={() => onSelect(item)}
-    >
+    <StyledTableRow onClick={() => onSelect(item)}>
       <TableCell>{item.guid}</TableCell>
       <TableCell>{item.name}</TableCell>
       <TableCell>{joinArray(item.path, ' > ')}</TableCell>
-    </TableRow>
+    </StyledTableRow>
   );
 }
 

@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Box } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';  
+import { makeStyles } from '@mui/styles';
 import PropertiesTab from './PropertiesTab';
 import ImageTab from './ImageTab';
 
-// Component to display the item details
+const useStyles = makeStyles((theme) => ({
+  tabsRoot: {
+    marginBottom: theme.spacing(2),
+  },
+  tab: {
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main + '1A',
+    },
+    '&.Mui-selected': {
+      backgroundColor: theme.palette.primary.main + '1A',
+    },
+  },
+}));
+
 function ItemDetails({ item }) {
+  const classes = useStyles();
   const [searchParams, setSearchParams] = useSearchParams();
   const initialTab = parseInt(searchParams.get('tab')) || 0; 
   const [tabIndex, setTabIndex] = useState(initialTab);
@@ -21,15 +36,9 @@ function ItemDetails({ item }) {
 
   return (
     <Box>
-      <Tabs value={tabIndex} onChange={handleTabChange}>
-        <Tab label="Properties" sx={{ 
-            backgroundColor: tabIndex === 0 ? 'rgba(25, 118, 210, 0.1)' : 'transparent', 
-            '&:hover': { backgroundColor: 'rgba(25, 118, 210, 0.2)' } 
-        }} />
-        <Tab label="Image" sx={{ 
-            backgroundColor: tabIndex === 1 ? 'rgba(25, 118, 210, 0.1)' : 'transparent', 
-            '&:hover': { backgroundColor: 'rgba(25, 118, 210, 0.2)' } 
-        }} />
+      <Tabs value={tabIndex} onChange={handleTabChange} className={classes.tabsRoot}>
+        <Tab label="Properties" className={classes.tab} />
+        <Tab label="Image" className={classes.tab} />
       </Tabs>
       <Box>
         {tabIndex === 0 && <PropertiesTab properties={item.properties} />}

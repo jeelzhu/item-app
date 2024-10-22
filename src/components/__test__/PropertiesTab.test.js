@@ -22,9 +22,9 @@ describe('PropertiesTab Component', () => {
   };
 
   it('renders all properties with correct keys and values', () => {
-    // Mock `isDateString` to recognize "date" as a date value
+    // Mock isDateString to recognize "date" as a date value
     isDateString.mockImplementation((value) => value === propertiesMock.date);
-    // Mock `formatDate` to return a formatted date string
+    // Mock formatDate to return a formatted date string
     formatDate.mockImplementation(() => 'October 10, 2014');
 
     render(<PropertiesTab properties={propertiesMock} />);
@@ -40,7 +40,7 @@ describe('PropertiesTab Component', () => {
     expect(screen.getByText('October 10, 2014')).toBeInTheDocument();
   });
 
-  it('handles empty properties object without crashing', () => {
+  it('handles empty properties object without problem', () => {
     render(<PropertiesTab properties={{}} />);
 
     // Check that no rows are rendered if there are no properties

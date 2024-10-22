@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
-import { getImageUrl } from '../services/api'; 
+import { styled } from '@mui/material/styles';
+import { getImageUrl } from '../services/api';
 
-// Component to display the image in tab 2
+// Styled image with default styles
+const StyledImage = styled('img')(({ theme }) => ({
+  maxWidth: '100%',
+  marginTop: theme.spacing(2),
+}));
+
 function ImageTab({ guid }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -15,15 +21,25 @@ function ImageTab({ guid }) {
 
   return (
     <Box p={2} textAlign="center">
-      {loading && !error && <CircularProgress />}
-      {error && (<Typography color="error">Error found when loading image.</Typography>)}
-      <img
-        src={getImageUrl(guid)} // Use the API service to get the image URL
-        alt="Item"
-        style={{ maxWidth: '100%', display: loading ? 'none' : 'block' }}
-        onLoad={handleLoad}
-        onError={handleError}
-    />
+      {loading && !error && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 200 }}>
+          <CircularProgress />
+        </Box>
+      )}
+      {error && (
+        <Typography color="error" sx={{ mt: 2 }}>
+          Error occurred while loading the image.
+        </Typography>
+      )}
+      {!error && (
+        <StyledImage
+          src={getImageUrl(guid)}
+          alt="Item"
+          onLoad={handleLoad}
+          onError={handleError}
+          style={{ display: loading ? 'none' : 'block' }} 
+        />
+      )}
     </Box>
   );
 }
