@@ -1,5 +1,7 @@
 import React from 'react';
 import { TableRow, TableCell } from '@mui/material';
+import { joinArray } from '../utils/utils';
+
 
 // Component to display the item row
 function ItemRow({ item, onSelect }) {
@@ -12,7 +14,7 @@ function ItemRow({ item, onSelect }) {
     >
       <TableCell>{item.guid}</TableCell>
       <TableCell>{item.name}</TableCell>
-      <TableCell>{item.path.join(' > ')}</TableCell>
+      <TableCell>{joinArray(item.path, ' > ')}</TableCell>
     </TableRow>
   );
 }

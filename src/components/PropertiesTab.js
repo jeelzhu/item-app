@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
+import { isDateString, formatDate } from '../utils/utils';
 
 // Component to display the properties in tab 1
 function PropertiesTab({ properties }) {
@@ -13,9 +14,9 @@ function PropertiesTab({ properties }) {
                 <TableCell>{key}</TableCell>
                   <TableCell align={typeof value === 'number' || isDateString(value) ? 'right' : 'left'}>
                     {typeof value === 'number' 
-                      ? value.toFixed(2) 
+                      ? value
                         : isDateString(value) 
-                          ? new Date(value).toLocaleDateString() 
+                          ? formatDate(value)
                     : String(value)}
                 </TableCell>
               </TableRow>
@@ -26,11 +27,5 @@ function PropertiesTab({ properties }) {
   </Box>
 );
 }
-
-//check if a string is in date format
-const isDateString = (value) => {
-    const date = new Date(value);
-    return !isNaN(date.getTime());
-};
 
 export default PropertiesTab;
