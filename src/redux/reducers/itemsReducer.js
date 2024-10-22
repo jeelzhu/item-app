@@ -12,7 +12,7 @@ const itemsReducer = (state = initialState, action) => {
     case types.FETCH_ITEMS_REQUEST:
       return { ...state, loading: true, error: null };
     case types.FETCH_ITEMS_SUCCESS:
-      return { ...state, loading: false, items: action.payload }; // Or use data
+      return { ...state, loading: false, items: action.payload }; 
     case types.FETCH_ITEMS_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:

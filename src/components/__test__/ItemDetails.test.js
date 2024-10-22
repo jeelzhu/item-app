@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ItemDetails from '../ItemDetails';
 import '@testing-library/jest-dom/extend-expect';
 
-// Mock child components
+//Mock child components
 jest.mock('../PropertiesTab', () => () => <div>Properties Content</div>);
 jest.mock('../ImageTab', () => () => <div>Image Content</div>);
 

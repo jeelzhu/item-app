@@ -4,7 +4,7 @@ import PropertiesTab from '../PropertiesTab';
 import '@testing-library/jest-dom/extend-expect';
 import { isDateString, formatDate } from '../../utils/utils';
 
-// Mock utils functions
+//Mock utils functions
 jest.mock('../../utils/utils', () => ({
   isDateString: jest.fn(),
   formatDate: jest.fn(),

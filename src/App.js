@@ -17,7 +17,7 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Roboto", sans-serif',
   },
-  spacing: 2, //Default spacing unit 
+  spacing: 3, //Default spacing unit 
 });
 
 function App() {

@@ -3,7 +3,7 @@ import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typo
 import { isDateString, formatDate } from '../utils/utils';
 
 // Component to display the properties in tab 1
-function PropertiesTab({ properties = {} }) { // Fallback in case properties is undefined
+function PropertiesTab({ properties = {} }) { 
   if (Object.keys(properties).length === 0) {
     return (
       <Box p={2}>
