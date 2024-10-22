@@ -5,7 +5,7 @@ import { fetchItems } from '../redux/actions/itemActions';
 // Custom hook to fetch items from the API and manage loading and error states
 function useFetchItems() {
   const dispatch = useDispatch();
-  const { items, loading, error } = useSelector((state) => state.items);
+  const { items, loading, error } = useSelector((state) => state.itemsState);
 
   useEffect(() => {
     if (items.length === 0) {
