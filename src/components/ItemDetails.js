@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// 
 function ItemDetails({ item }) {
   const classes = useStyles();
   const [searchParams, setSearchParams] = useSearchParams();

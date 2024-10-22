@@ -4,20 +4,20 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import ItemList from './components/ItemList';
 import ItemDetailsPage from './components/ItemDetailsPage';
 
-// Create a custom theme 
+//Create a default theme 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2', // Your primary color
+      main: '#2196f3',
     },
     secondary: {
-      main: '#dc004e', // Your secondary color
+      main: '#f50057',
     },
   },
   typography: {
     fontFamily: '"Roboto", sans-serif',
   },
-  spacing: 2, // Default spacing unit of 8px
+  spacing: 2, //Default spacing unit 
 });
 
 function App() {
@@ -29,7 +29,6 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* Global styles for consistency */}
       <GlobalStyles
         styles={{
           '*': { margin: 0, padding: 0, boxSizing: 'border-box' },
@@ -38,7 +37,6 @@ function App() {
         }}
       />
 
-      {/* Define application routes */}
       <Routes>
         <Route path="/" element={<ItemList onSelect={handleItemSelected} />} />
         <Route path="/items/:id" element={<ItemDetailsPage />} />

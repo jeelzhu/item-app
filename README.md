@@ -38,5 +38,5 @@ To start the development server, run:
 
 Due to time constraints, the following enhancements are not currently implemented:
 
-- Additional Material-UI styling to further improve the user interface and experience.
-- More comprehensive unit test cases to cover additional scenarios and edge cases.
+- Additional Material-UI Styling: Further improve the user interface and experience, including more responsive layouts and better alignment of components.
+- Comprehensive Unit Tests: Add more unit test cases to cover additional scenarios and edge cases, such as network failures, empty item states, and edge cases in user interactions.k
