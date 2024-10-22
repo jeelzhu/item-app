@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import ItemList from './components/ItemList';
 import ItemDetailsPage from './components/ItemDetailsPage';
 
-// Create a custom theme for your app
+// Create a custom theme 
 const theme = createTheme({
   palette: {
     primary: {
@@ -17,7 +17,7 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Roboto", sans-serif',
   },
-  spacing: 8, // Default spacing unit of 8px
+  spacing: 2, // Default spacing unit of 8px
 });
 
 function App() {
