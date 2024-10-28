@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyles, ThemeProvider, createTheme } from '@mui/material';
+import { GlobalStyles, ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import ItemList from './components/ItemList';
 import ItemDetailsPage from './components/ItemDetailsPage';
@@ -13,12 +13,40 @@ const theme = createTheme({
     secondary: {
       main: '#f50057',
     },
+    background: {
+      default: '#f5f5f5', // Set the default background color for the application
+    },
   },
   typography: {
     fontFamily: '"Roboto", sans-serif',
+    allVariants: {
+      color: '#333', // Default text color for all variants
+    },
   },
-  spacing: 3, //Default spacing unit 
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        '*': {
+          margin: 0,
+          padding: 0,
+          boxSizing: 'border-box',
+        },
+        body: {
+          backgroundColor: '#f5f5f5', // Setting consistent body background
+          fontFamily: '"Roboto", sans-serif',
+          lineHeight: 1.6,
+          color: '#333',
+        },
+        a: {
+          textDecoration: 'none',
+          color: 'inherit',
+        },
+      },
+    },
+  },
+  spacing: 3, // Default spacing unit for consistency across the app
 });
+
 
 function App() {
   const navigate = useNavigate();
@@ -29,13 +57,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles
-        styles={{
-          '*': { margin: 0, padding: 0, boxSizing: 'border-box' },
-          body: { fontFamily: '"Roboto", sans-serif', backgroundColor: '#f5f5f5' },
-          a: { textDecoration: 'none', color: 'inherit' },
-        }}
-      />
+      <CssBaseline />
 
       <Routes>
         <Route path="/" element={<ItemList onSelect={handleItemSelected} />} />
